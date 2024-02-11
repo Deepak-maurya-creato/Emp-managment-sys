@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Employee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    
+    
+    <div class="container">
+        <h2 class="my-2 text-center">Employee Managment System</h2>
+        <hr>
+        <div class="row my-4 mx-4">
+
+            <div class="col-3">
+                <a href="{% url 'all-employee' %}" type="button" class="btn btn-primary btn-lg">All Employee</a>
+            </div>
+            <div class="col-3">
+                <a href="{% url 'add-employee' %}" type="button" class="btn btn-primary btn-lg">Add Employee</a>
+            </div>
+            <div class="col-3">
+                <a href="{% url 'delete-employee' %}" type="button" class="btn btn-primary btn-lg">Delete Employee</a>
+
+            </div>
+            <div class="col-3">
+                <a href="{% url 'filter-employee' %}" type="button" class="btn btn-primary btn-lg">Filter Employee</a>
+
+            </div>
+
+        </div>
+    </div>
+
+    
+<div class="container mt-3">
+  <hr>
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong>{{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+
+  <h2 class="my-2 text-center">Add New Employee Information</h2>
+  <form method="post" class="mx-4 mb-4">
+
+    {% csrf_token %}
+
+    <div class="form-group my-2">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" required>
+    </div>
+    <div class="form-group my-2">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" required>
+    </div>
+    <div class="form-group my-2">
+      <label for="department">Department</label>
+      <select class="form-control" id="department" name="department" required>
+        <option value="">Select department</option>
+        {% for dept in all_dept %}
+        <option value="{{dept.id}}">{{dept.name}} - {{dept.location}}</option>
+        {% endfor %}
+
+
+      </select>
+    </div>
+    <div class="form-group my-2">
+      <label for="role">Role</label>
+      <select class="form-control" id="role" name="role" required>
+        <option value="">Select role</option>
+        {% for role in all_role %}
+        <option value="{{role.id}}">{{role.name}}</option>
+        {% endfor %}
+
+      </select>
+    </div>
+    <div class="form-group my-2">
+      <label for="salary">Salary</label>
+      <input type="text" class="form-control" id="salary" name="salary" required>
+    </div>
+    <div class="form-group my-2">
+      <label for="bonus">Bonus</label>
+      <input type="text" class="form-control" id="bonus" name="bonus" required>
+    </div>
+    <div class="form-group my-2">
+      <label for="phone">Phone</label>
+      <input type="text" class="form-control" id="phone" name="phone" required>
+    </div>
+    <div class="form-group my-2">
+      <label for="hireDate">Hire Date</label>
+      <input type="date" class="form-control" id="hireDate" name="hireDate" required>
+    </div>
+    <button type="submit" class="btn btn-primary my-2">Submit</button>
+    <button type="reset " class="btn btn-danger my-2">Reset</button>
+  </form>
+</div>
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
