@@ -4,3 +4,5 @@ Simple Employee Managment System
 2 - Add New Employee - Using Bootstrap HTML Form In Front-End
 3 - Delete Employee - Using Bootstrap Dropdown In Front-End
 4 - Filter Employee - Using Bootstrap HTML Form In Front-End
+
+NOTE - No need Pillow Lib here
